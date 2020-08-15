@@ -81,9 +81,11 @@ function Sketchpad(config) {
 //
 
 Sketchpad.prototype._cursorPosition = function(event) {
+  var ratio = $(this.canvas)[0].width / $(this.canvas).width();
+  var rect = this.canvas.getBoundingClientRect();
   return {
-    x: event.pageX - $(this.canvas).offset().left,
-    y: event.pageY - $(this.canvas).offset().top,
+    x: (event.clientX - rect.left) * ratio,
+    y: (event.clientY - rect.top) * ratio,
   };
 };
 
